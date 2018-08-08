@@ -129,19 +129,37 @@ def targetFeatureSplit( data ):
 
 def featureScaling(features):
     salaryFeature=[]
-    exercised_stock_optionsFeature=[]
+    total_stock_valueFeature=[]
+    total_paymentsFeature=[]
+    ContactWithPOIFeature=[]
+
 
     for item in features:
         salaryFeature.append(item[0])
-        #exercised_stock_optionsFeature.append(item[1])
+        total_stock_valueFeature.append(item[1])
+        total_paymentsFeature.append(item[2])
+        ContactWithPOIFeature.append(item[3])
+
     
     
     salaryFeatureArr= np.array(salaryFeature)
+    total_stock_valueFeatureArr= np.array(total_stock_valueFeature)
+    total_paymentsFeatureArr= np.array(total_paymentsFeature)
+    ContactWithPOIFeatureArr= np.array(ContactWithPOIFeature)
     #exercised_stock_optionsFeatureArr= np.array(exercised_stock_optionsFeature)
     
 
     salaryScaler= MinMaxScaler()
     scaledSalary = salaryScaler.fit_transform(salaryFeatureArr)
+
+    totalStockValueScaler= MinMaxScaler()
+    scaledTotalStockValue= totalStockValueScaler.fit_transform(total_stock_valueFeatureArr)
+
+    totalPaymentScaler= MinMaxScaler()
+    scaledTotalPayment= totalPaymentScaler.fit_transform(total_paymentsFeatureArr)
+
+    contactWithPOIScaler= MinMaxScaler()
+    scaledContactWithPOI = contactWithPOIScaler.fit_transform(ContactWithPOIFeatureArr)
 
     #stockScaler= MinMaxScaler()
     #scaledStock= stockScaler.fit_transform(exercised_stock_optionsFeatureArr)
@@ -149,11 +167,16 @@ def featureScaling(features):
     #print(salaryScaler.transform(np.array([[200000.0]])))
     #print(stockScaler.transform(np.array([[1000000.0]])))
 
-    #retFeatures= np.column_stack((scaledSalary, scaledStock))
+    retFeatures= np.column_stack((scaledSalary, scaledTotalStockValue,scaledTotalPayment,scaledContactWithPOI))
+
+    #print(retFeatures)
+
+    ###If the feature is single feture then you have to reshape the feature.
+    '''
     print(type(scaledSalary))
     retFeatures= np.array(scaledSalary).reshape(len(scaledSalary),1)
     print(type(retFeatures))
-
+    '''
     return retFeatures
 
 
