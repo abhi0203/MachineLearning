@@ -129,39 +129,40 @@ def targetFeatureSplit( data ):
 def featureScaling(features):
     salaryFeature=[]
     total_stock_valueFeature=[]
-    total_paymentsFeature=[]
+    #total_paymentsFeature=[]
     ContactWithPOIFeature=[]
     bonusFeature=[]
-    loanAdvancesFeature= []
+    #loanAdvancesFeature= []
     expensesFeature=[]
     exercisedStockOptionsFeature=[]
     longTermIncentiveFeature=[]
     sharedReceiptWithPoiFeature= []
     restrictedStockFeature=[]
 
+    print("This is Abhiram")
 
+#total_paymentsFeature.append(item[2])
+#loanAdvancesFeature.append(item[5])
     for item in features:
         salaryFeature.append(item[0])
         total_stock_valueFeature.append(item[1])
-        total_paymentsFeature.append(item[2])
-        ContactWithPOIFeature.append(item[3])
-        bonusFeature.append(item[4])
-        loanAdvancesFeature.append(item[5])
-        expensesFeature.append(item[6])
-        exercisedStockOptionsFeature.append(item[7])
-        longTermIncentiveFeature.append(item[8])
-        sharedReceiptWithPoiFeature.append(item[9])
-        restrictedStockFeature.append(item[10])
+        ContactWithPOIFeature.append(item[2])
+        bonusFeature.append(item[3])
+        expensesFeature.append(item[4])
+        exercisedStockOptionsFeature.append(item[5])
+        longTermIncentiveFeature.append(item[6])
+        sharedReceiptWithPoiFeature.append(item[7])
+        restrictedStockFeature.append(item[8])
 
 
     
     
     salaryFeatureArr= np.array(salaryFeature)
     total_stock_valueFeatureArr= np.array(total_stock_valueFeature)
-    total_paymentsFeatureArr= np.array(total_paymentsFeature)
+    #total_paymentsFeatureArr= np.array(total_paymentsFeature)
     ContactWithPOIFeatureArr= np.array(ContactWithPOIFeature)
     bonusArr= np.array(bonusFeature)
-    loanAdvanceArr= np.array(loanAdvancesFeature)
+    #loanAdvanceArr= np.array(loanAdvancesFeature)
     expensesArr= np.array(expensesFeature)
     exercisedStockOptionsArr= np.array(exercisedStockOptionsFeature)
     longTermIncentiveArr= np.array(longTermIncentiveFeature)
@@ -182,8 +183,8 @@ def featureScaling(features):
     totalStockValueScaler= MinMaxScaler()
     scaledTotalStockValue= totalStockValueScaler.fit_transform(total_stock_valueFeatureArr)
 
-    totalPaymentScaler= MinMaxScaler()
-    scaledTotalPayment= totalPaymentScaler.fit_transform(total_paymentsFeatureArr)
+    #totalPaymentScaler= MinMaxScaler()
+    #scaledTotalPayment= totalPaymentScaler.fit_transform(total_paymentsFeatureArr)
 
     contactWithPOIScaler= MinMaxScaler()
     scaledContactWithPOI = contactWithPOIScaler.fit_transform(ContactWithPOIFeatureArr)
@@ -191,8 +192,8 @@ def featureScaling(features):
     bonusScaler= MinMaxScaler()
     scaledBonus= bonusScaler.fit_transform(bonusArr)
 
-    loanAdvanceScaler= MinMaxScaler()
-    scaledLoanAdvance= loanAdvanceScaler.fit_transform(loanAdvanceArr)
+    #loanAdvanceScaler= MinMaxScaler()
+    #scaledLoanAdvance= loanAdvanceScaler.fit_transform(loanAdvanceArr)
 
     expenseScaler= MinMaxScaler()
     scaledExpense= expenseScaler.fit_transform(expensesArr)
@@ -217,7 +218,7 @@ def featureScaling(features):
     #print(salaryScaler.transform(np.array([[200000.0]])))
     #print(stockScaler.transform(np.array([[1000000.0]])))
 
-    retFeatures= np.column_stack((scaledSalary, scaledTotalStockValue,scaledTotalPayment,scaledContactWithPOI,scaledBonus,scaledLoanAdvance,scaledExpense,scaledExercisedStockOption,scaledLongTermIncentive,scaledSharedreceiptWithPoi,scaledRestrictedStock))
+    retFeatures= np.column_stack((scaledSalary, scaledTotalStockValue,scaledContactWithPOI,scaledBonus,scaledExpense,scaledExercisedStockOption,scaledLongTermIncentive,scaledSharedreceiptWithPoi,scaledRestrictedStock))
 
     #print(retFeatures)
 
@@ -227,6 +228,7 @@ def featureScaling(features):
     retFeatures= np.array(scaledSalary).reshape(len(scaledSalary),1)
     print(type(retFeatures))
     '''
+    print("This is Abhiram 2")
     return retFeatures
 
 

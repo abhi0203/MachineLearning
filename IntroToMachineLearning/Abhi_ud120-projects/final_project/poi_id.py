@@ -10,7 +10,8 @@ from tester import dump_classifier_and_data
 ### Task 1: Select what features you'll use.
 ### features_list is a list of strings, each of which is a feature name.
 ### The first feature must be "poi".
-features_list = ['poi','salary','total_stock_value','total_payments','ContactWithPOI','bonus','loan_advances','expenses','exercised_stock_options','long_term_incentive','shared_receipt_with_poi','restricted_stock']
+#features_list = ['poi','salary','total_stock_value','total_payments','ContactWithPOI','bonus','loan_advances','expenses','exercised_stock_options','long_term_incentive','shared_receipt_with_poi','restricted_stock']
+features_list = ['poi','salary','total_stock_value','ContactWithPOI','bonus','expenses','exercised_stock_options','long_term_incentive','shared_receipt_with_poi','restricted_stock']
 # You will need to use more features
 
 ### Load the dictionary containing the dataset
@@ -110,7 +111,7 @@ from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 #clf = GaussianNB(priors=None)
 #clf= SVC(kernel='linear')
-clf= DecisionTreeClassifier(max_depth=5)
+clf= DecisionTreeClassifier(max_depth=5,splitter='best', criterion='entropy')
 
 
 ### Task 5: Tune your classifier to achieve better than .3 precision and recall 
@@ -128,7 +129,7 @@ features_train, features_test, labels_train, labels_test = \
 #Checking how useful the features are.
 
 from sklearn.feature_selection import SelectKBest
-featureSelector= SelectKBest(k=8)
+featureSelector= SelectKBest(k=7)
 featureSelector.fit(features_train,labels_train)
 chosenTrainFeatures= featureSelector.transform(features_train)
 #chosenTrainLabels= featureSelector.transform(labels_train)
